@@ -24,7 +24,7 @@ public class BankOperation {
     @JsonFormat(pattern = "yyyy-MM-dd")
     LocalDate date;
 
-    @ManyToOne(targetEntity = BankAccount.class)
+    @ManyToOne(targetEntity = BankAccount.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "bank_account")
     @JsonIgnoreProperties("bankAccount")
     BankAccount bankAccount;

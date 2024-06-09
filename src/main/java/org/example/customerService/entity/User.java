@@ -21,7 +21,7 @@ public class User implements Serializable , UserDetails {
     @OneToMany(mappedBy = "bankUser", targetEntity = Contribution.class)
     Set<Contribution> Contributions = new HashSet<>();
 
-    @OneToOne(targetEntity = BankAccount.class)
+    @OneToOne(targetEntity = BankAccount.class,cascade = CascadeType.MERGE)
     BankAccount bankAccount;
 
     @ManyToMany(fetch = FetchType.EAGER)

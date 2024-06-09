@@ -99,7 +99,8 @@ public class RestController {
         {
             operation.setBankAccount(user.getBankAccount());
         }
-        user.getBankAccount().setOperations(bankOperationList);
+        user.getBankAccount().getOperations().addAll(bankOperationList);
+        //user.getBankAccount().setOperations(bankOperationList);
 
         userService.SaveUser(user);
         return "success";
