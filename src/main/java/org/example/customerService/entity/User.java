@@ -18,9 +18,6 @@ public class User implements Serializable , UserDetails {
     Long id;
 
     String username,password;
-    @OneToMany(mappedBy = "bankUser", targetEntity = Contribution.class)
-    Set<Contribution> Contributions = new HashSet<>();
-
     @OneToOne(targetEntity = BankAccount.class,cascade = CascadeType.MERGE)
     BankAccount bankAccount;
 
@@ -30,10 +27,9 @@ public class User implements Serializable , UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String username, String password, Set<Contribution> contributions, BankAccount bankAccount , List<String> roles) {
+    public User(String username, String password, BankAccount bankAccount , List<String> roles) {
         this.username = username;
         this.password = password;
-        Contributions = contributions;
         this.bankAccount = bankAccount;
     }
 
@@ -94,13 +90,6 @@ public class User implements Serializable , UserDetails {
         this.password = password;
     }
 
-    public Set<Contribution> getContributions() {
-        return Contributions;
-    }
-
-    public void setContributions(Set<Contribution> contributions) {
-        Contributions = contributions;
-    }
 
     public BankAccount getBankAccount() {
         return bankAccount;
