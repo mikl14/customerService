@@ -1,11 +1,4 @@
-ALTER TABLE ONLY mtsbank.bank_account
-    ADD CONSTRAINT bank_account_pkey PRIMARY KEY (id);
 
-ALTER TABLE ONLY mtsbank.bank_contribution
-    ADD CONSTRAINT bank_contribution_pkey PRIMARY KEY (id);
-
-ALTER TABLE ONLY mtsbank.bank_operation
-    ADD CONSTRAINT bank_operation_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY mtsbank.bank_user
     ADD CONSTRAINT bank_user_pkey PRIMARY KEY (id);

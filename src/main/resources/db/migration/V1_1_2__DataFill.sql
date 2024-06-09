@@ -1,8 +1,8 @@
-INSERT INTO mtsbank.bank_account (id, sum)
+INSERT INTO mtsbank.bank_account ( sum)
 VALUES
-    (1, 1000),
-    (2, 2000),
-    (3, 3000);
+    (1000),
+    (2000),
+    (3000);
 
 INSERT INTO mtsbank.bank_user (id, password, username, bank_account_id)
 VALUES

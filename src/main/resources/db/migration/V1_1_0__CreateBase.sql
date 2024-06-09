@@ -1,7 +1,7 @@
 create schema IF NOT EXISTS mtsbank;
 
 CREATE TABLE IF NOT EXISTS mtsbank.bank_account (
-    id bigint NOT NULL,
+    id bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     sum bigint
 );
 
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS mtsbank.bank_user (
     bank_account_id bigint
 );
 CREATE TABLE IF NOT EXISTS mtsbank.bank_contribution (
-    id bigint NOT NULL,
+    id bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     closed_date date,
     contribution_account character varying(255),
     open_date date,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS mtsbank.contribution_type (
 );
 
 CREATE TABLE IF NOT EXISTS mtsbank.bank_operation (
-    id bigint NOT NULL,
+    id bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     date date,
     sum numeric(19,2),
     type character varying(255),

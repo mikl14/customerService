@@ -1,5 +1,8 @@
 package org.example.customerService.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +40,7 @@ public class BankAccount {
     public Long getSum() {
         return sum;
     }
-
+    @JsonManagedReference
     public List<BankOperation> getOperations() {
         return operations;
     }
@@ -49,4 +52,5 @@ public class BankAccount {
     public void setOperations(List<BankOperation> operations) {
         this.operations = operations;
     }
+
 }

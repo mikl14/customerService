@@ -1,6 +1,8 @@
 package org.example.customerService.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -24,6 +26,7 @@ public class BankOperation {
 
     @ManyToOne(targetEntity = BankAccount.class)
     @JoinColumn(name = "bank_account")
+    @JsonIgnoreProperties("bankAccount")
     BankAccount bankAccount;
     public BankOperation(BigDecimal sum, String type, LocalDate date) {
         this.sum = sum;
@@ -32,5 +35,38 @@ public class BankOperation {
     }
 
     public BankOperation() {
+    }
+
+    public BigDecimal getSum() {
+        return sum;
+    }
+
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    @JsonBackReference
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 }

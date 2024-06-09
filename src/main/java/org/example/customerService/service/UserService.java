@@ -1,6 +1,7 @@
 package org.example.customerService.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.customerService.entity.BankOperation;
 import org.springframework.context.annotation.Lazy;
@@ -56,5 +57,10 @@ public class UserService {
     public String userHistoryListToJson(List<BankOperation> bankOperations) throws JsonProcessingException {
         String json = mapper.writeValueAsString(bankOperations);
         return json;
+    }
+
+    public  List<BankOperation> JsonToOperationsList(String body) throws JsonProcessingException {
+       return  mapper.readValue(body, new TypeReference<List<BankOperation>>() {});
+
     }
 }

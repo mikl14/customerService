@@ -1,12 +1,15 @@
 package org.example.customerService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.example.customerService.entity.BankOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.example.customerService.entity.User;
 import org.example.customerService.service.UserService;
+
+import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/customer/api")
@@ -83,11 +86,22 @@ public class RestController {
 
     @PostMapping("/setHistory")
     public String setHistory(@RequestBody String body) throws JsonProcessingException {
-        User user = userService.getUser(body);
+        String[] userData = body.split("`");
+        User user = userService.getUser(userData[0]);
         if (user == null)
         {
             return "";
         }
-        return  userService.userHistoryListToJson(user.getBankAccount().getOperations());
+
+        List<BankOperation> bankOperationList = userService.JsonToOperationsList(userData[1]);
+
+        for(BankOperation operation : bankOperationList)
+        {
+            operation.setBankAccount(user.getBankAccount());
+        }
+        user.getBankAccount().setOperations(bankOperationList);
+
+        userService.SaveUser(user);
+        return "success";
     }
 }
