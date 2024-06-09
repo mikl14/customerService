@@ -41,4 +41,12 @@ public class BankAccount {
     public List<BankOperation> getOperations() {
         return operations;
     }
+
+    public void setSum(Long sum) {
+        this.sum = sum;
+    }
+
+    public void setOperations(List<BankOperation> operations) {
+        this.operations = operations;
+    }
 }
