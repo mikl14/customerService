@@ -9,6 +9,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * <b>BankOperation</b> - класс записи операции со счетом
+ */
 @Entity
 public class BankOperation {
 
@@ -24,10 +27,11 @@ public class BankOperation {
     @JsonFormat(pattern = "yyyy-MM-dd")
     LocalDate date;
 
-    @ManyToOne(targetEntity = BankAccount.class,cascade = CascadeType.MERGE)
+    @ManyToOne(targetEntity = BankAccount.class, cascade = CascadeType.MERGE)
     @JoinColumn(name = "bank_account")
     @JsonIgnoreProperties("bankAccount")
     BankAccount bankAccount;
+
     public BankOperation(BigDecimal sum, String type, LocalDate date) {
         this.sum = sum;
         this.type = type;

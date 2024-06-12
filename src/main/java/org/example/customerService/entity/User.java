@@ -13,12 +13,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "bank_user")
-public class User implements Serializable , UserDetails {
+public class User implements Serializable, UserDetails {
     @Id
     Long id;
 
-    String username,password;
-    @OneToOne(targetEntity = BankAccount.class,cascade = CascadeType.MERGE)
+    String username, password;
+    @OneToOne(targetEntity = BankAccount.class, cascade = CascadeType.MERGE)
     BankAccount bankAccount;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -27,7 +27,7 @@ public class User implements Serializable , UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(String username, String password, BankAccount bankAccount , List<String> roles) {
+    public User(String username, String password, BankAccount bankAccount, List<String> roles) {
         this.username = username;
         this.password = password;
         this.bankAccount = bankAccount;
